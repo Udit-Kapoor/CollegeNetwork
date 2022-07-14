@@ -14,7 +14,9 @@ Food NFT :  KT1FpJPYLKVZDW11NCYZUbdZQGSugAdPqKcX
 Wallets
 
 admin : tz1NaGu7EisUCyfJpB16ktNxgSqpuMo8aSEk
+
 CanteenWallet : tz1VdqimZ3DQGKkE3oB8mVn62qhuvm3GeJiS
+
 Library Wallet : tz1NhKzAZkzB1SExnt1ECtfvuGE6n5VSLctL
 
 
