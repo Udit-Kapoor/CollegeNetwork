@@ -107,12 +107,12 @@ class CanteenNFT(sp.Contract):
     @sp.entry_point
     def updateCanteen(self , address):
         self.checkAdmin()
-        self.data.admin = address
+        self.data.canteenWallet = address
     
     @sp.entry_point
     def updateToken(self , address):
         self.checkAdmin()
-        self.data.admin = address
+        self.data.tokenAddress = address
     
     @sp.entry_point
     def updateLibrary(self , address):
