@@ -10,8 +10,6 @@ __pycache__/
 .Python
 build/node_modules
 build/build
-build/package-lock.json
-build/package.json
 develop-eggs/
 dist/
 downloads/
