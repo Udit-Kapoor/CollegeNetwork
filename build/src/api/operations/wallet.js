@@ -1,4 +1,4 @@
-import {connectedNetwork , rpcUrl } from '../../common/constants.js'
+import {connectedNetwork , rpcNode } from '../../common/constants.js'
 import { BeaconWallet } from '@taquito/beacon-wallet';
 import { TezosToolkit } from '@taquito/taquito';
 
