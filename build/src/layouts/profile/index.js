@@ -25,6 +25,9 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
+import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
+import MDButton from "components/MDButton";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -57,7 +60,64 @@ function Overview() {
       <DashboardNavbar />
       <MDBox mb={2} />
       <Header>
+        
         <MDBox pt={2} px={2} lineHeight={1.25}>
+        <MDBox my={3}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+            <DefaultInfoCard
+              icon="account_balance"
+              title="Semester Allowance"
+              description="Available"
+              value="+200 NCUT"
+            />
+            <MDBox  my={1}>
+            <MDButton variant="gradient" color="info" fullWidth>Claim</MDButton>
+            </MDBox>
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+            <DefaultInfoCard
+              icon="account_balance"
+              title="Dean's List Allowance"
+              description="Not Available"
+              value="+200 NCUT"
+            />
+            <MDBox  my={1}>
+            <MDButton variant="gradient" color="info" fullWidth>Claim</MDButton>
+            </MDBox>
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+            <DefaultInfoCard
+              icon="account_balance"
+              title="Special Allowance"
+              description="Not Available"
+              value="+500 NCUT"
+            />
+            <MDBox  my={1}>
+            <MDButton variant="gradient" color="info" fullWidth>Claim</MDButton>
+            </MDBox>
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+            <DefaultInfoCard
+              icon="account_balance"
+              title="Special Allowance"
+              description="Not Available"
+              value="+1000 NCUT"
+            />
+            <MDBox  my={1}>
+            <MDButton variant="gradient" color="info" fullWidth>Claim</MDButton>
+            </MDBox>
+            </MDBox>
+          </Grid>
+        </Grid>
+        </MDBox>
           <MDTypography variant="h6" fontWeight="medium">
             Achievements
           </MDTypography>
