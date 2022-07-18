@@ -1,5 +1,5 @@
-export const connectedNetwork = "mainnet";
-export const rpcNode = "https://mainnet.smartpy.io";
+export const connectedNetwork = "ghostnet";
+export const rpcNode = "https://ghostnet.smartpy.io";
 
 
 export const NCUCoin = "KT1AefyQpVfjupNFKBoKqrVHtHnCSZ7AKBtX";
