@@ -21,13 +21,16 @@ export const ConnectWalletAPI = async () => {
   try {
     let account = await wallet.client.getActiveAccount();
     if (!account) {
-      await wallet.client.requestPermissions({
+      console.log(wallet);
+      await wallet.requestPermissions({
         network: {
           type: connectedNetwork,
           rpcUrl: rpcNode,
-        },
+        }
       });
+      
       account = await wallet.client.getActiveAccount();
+      console.log(account);
     }
     if (account) {
       return {
