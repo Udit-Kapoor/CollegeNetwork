@@ -23,40 +23,30 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 // Billing page components
 
-function BillingInformation() {
+function AddStudentCard({allowanceType,disabled}) {
+    let btn;
+    if(disabled=='True'){
+        btn = <MDInput variant="outlined" label="Input amount to be granted" disabled />
+      } else {
+        btn = <MDInput variant="outlined" label="Input amount to be granted"  />
+      }
   return (
     <>
     <Card id="delete-account">
       <MDBox pt={3} px={2}>
         <MDTypography variant="h6" fontWeight="medium">
-          Billing Information
+          Add Allowance
         </MDTypography>
       </MDBox>
       <MDBox pt={1} pb={2} px={2}>
         <MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
-          <MDTypography variant="h3" my={0} >Pay Library due</MDTypography>
+          <MDTypography variant="h3" my={0} >{allowanceType}</MDTypography>
           <MDTypography variant="body2" my={1}>1 NCU Token ~ 1Rs cash equivalent</MDTypography>
-          <MDInput variant="outlined" label="Input token amount to send" />
-          <MDBox my={1} >
-          <MDButton variant="gradient" color="info" fullWidth>Send</MDButton>
-          </MDBox>
-        </MDBox>
-      </MDBox>
-    </Card>
-    <br/>
-    <Card id="delete-account">
-      <MDBox pt={3} px={2}>
-        <MDTypography variant="h6" fontWeight="medium">
-          Billing Information
-        </MDTypography>
-      </MDBox>
-      <MDBox pt={1} pb={2} px={2}>
-        <MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
-          <MDTypography variant="h3" my={0} >Pay Fine due</MDTypography>
-          <MDTypography variant="body2" my={1}>1 NCU Token ~ 1Rs cash equivalent</MDTypography>
-          <MDInput variant="outlined" label="Input token amount to send" />
-          <MDBox my={1} >
-          <MDButton variant="gradient" color="info" fullWidth>Send</MDButton>
+          <MDInput variant="outlined" label="Input ID" />
+          <MDBox my={1} />
+          {btn}
+          <MDBox my={2} >
+          <MDButton variant="gradient" color="info" fullWidth>Add</MDButton>
           </MDBox>
         </MDBox>
       </MDBox>
@@ -65,4 +55,4 @@ function BillingInformation() {
   );
 }
 
-export default BillingInformation;
+export default AddStudentCard;
