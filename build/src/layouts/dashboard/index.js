@@ -56,7 +56,7 @@ function Dashboard() {
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
               <AddStudentCard 
-                allowanceType="Add Teacher"
+                allowanceType="Add Student"
                 disabled="Flase"
                 />
               </MDBox>

@@ -63,35 +63,59 @@ function Projects() {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={age}
-          label="Age"
+          label="Category"
           onChange={handleChange}
           style={{height:"45px"}}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={1}>Trophy</MenuItem>
+          <MenuItem value={2}>Degree</MenuItem>
+          <MenuItem value={3}>Certificate</MenuItem>
         </Select>
       </FormControl>
-
       </MDBox>
-      {/* { fields['revenueGenerated'] === 'Yes' ?
-                   <>
-                       <label htmlFor="numberOfUsers">Sample Yes</label>
-                       <input type="text"
-                           name="numberOfUsers"
-                       />
-                   </>
-                   : null
-      }  */}
+      { age ==1 ?  
+            <>
+             <MDBox my={1} mx={2} >
+               <MDInput type="text" label="Student Name"  fullWidth/>
+             </MDBox>
+             <MDBox my={1} mx={2} >
+               <MDInput type="text" label="Event Name"  fullWidth/>
+             </MDBox>
+             <MDBox my={1} mx={2} >
+               <MDInput type="text" label="Sports"  fullWidth/>
+             </MDBox>
+             <MDBox my={1} mx={2} >
+               <MDInput type="text" label="Position"  fullWidth/>
+             </MDBox>
+            </>: 
+          age ==2 ?
+            <>
+            <MDBox my={1} mx={2} >
+              <MDInput type="text" label="Student Name"  fullWidth/>
+            </MDBox>
+            <MDBox my={1} mx={2} >
+              <MDInput type="text" label="Course"  fullWidth/>
+            </MDBox>
+            <MDBox my={1} mx={2} >
+              <MDInput type="text" label="CGPA"  fullWidth/>
+            </MDBox>
+          </>:
+          age ==3 ?
+           <>
+           <MDBox my={1} mx={2} >
+              <MDInput type="text" label="Student Name"  fullWidth/>
+            </MDBox>
+            <MDBox my={1} mx={2} >
+              <MDInput type="text" label="Position"  fullWidth/>
+            </MDBox>
+            </>
+            : <></>
+          
 
-      <MDBox my={1} mx={2} >
-        <MDTypography variant="caption">
-          Add Food Image
-        </MDTypography>
-        <MDInput type="file" fullWidth/>
-      </MDBox>
+          }
+      
       <MDBox my={2} mx={2}  >
-          <MDButton variant="gradient" color="info" fullWidth>Add</MDButton>
+          <MDButton variant="gradient" color="info" fullWidth>Send</MDButton>
       </MDBox>
     </Card>
 
