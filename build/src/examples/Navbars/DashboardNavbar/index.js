@@ -58,6 +58,7 @@ import {
   FetchWalletAPI,
   DisconnectWalletAPI,
 } from "api/operations/wallet";
+import MDButton from "components/MDButton";
 
 
 function DashboardNavbar({ absolute, light, isMini }) {
@@ -167,23 +168,28 @@ function DashboardNavbar({ absolute, light, isMini }) {
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
-            <button
+            <MDButton
+              variant="contained" color="info"
               onClick={wallet ? handleDisconnectWallet : handleConnectWallet}
               className="bg-red-500 px-6 py-2 rounded-sm text-xs font-semibold text-white cursor-pointer"
             >
-              💳{" "}
+              
+              <MDBox mr={2}>
+              <img src="https://img.icons8.com/pastel-glyph/64/FFFFFF/card-wallet--v1.png" width={18} />
+              </MDBox>
+              {" "}
               {wallet
                 ? wallet.slice(0, 4) +
                   "..." +
                   wallet.slice(wallet.length - 4, wallet.length)
                 : "Connect"}
-            </button>
+            </MDButton>
             <MDBox color={light ? "white" : "inherit"}>
-              <Link to="/authentication/sign-in/basic">
+              {/* <Link to="/authentication/sign-in/basic">
                 <IconButton sx={navbarIconButton} size="small" disableRipple>
                   <Icon sx={iconsStyle}>account_circle</Icon>
                 </IconButton>
-              </Link>
+              </Link> */}
               <IconButton
                 size="small"
                 disableRipple
@@ -204,7 +210,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
               >
                 <Icon sx={iconsStyle}>settings</Icon>
               </IconButton>
-              <IconButton
+              {/* <IconButton
                 size="small"
                 disableRipple
                 color="inherit"
@@ -215,7 +221,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 onClick={handleOpenMenu}
               >
                 <Icon sx={iconsStyle}>notifications</Icon>
-              </IconButton>
+              </IconButton> */}
               {renderMenu()}
             </MDBox>
           </MDBox>
