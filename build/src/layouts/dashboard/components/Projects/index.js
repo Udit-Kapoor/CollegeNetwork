@@ -57,7 +57,7 @@ function Projects() {
       </MDBox>
       <MDBox my={1} mx={2} mb={0}>
       <FormControl fullWidth style={{height:"45px"}} >
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">Category</InputLabel>
         
         <Select
           labelId="demo-simple-select-label"
