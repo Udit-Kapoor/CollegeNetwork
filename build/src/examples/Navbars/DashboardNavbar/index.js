@@ -59,6 +59,7 @@ import {
   DisconnectWalletAPI,
 } from "api/operations/wallet";
 import MDButton from "components/MDButton";
+import { getUserBalanceByRpc } from "api/balance";
 
 
 function DashboardNavbar({ absolute, light, isMini }) {
@@ -136,8 +137,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const [balance, setBalance] = useState(null);
 
   const fetchBal = async () => {
-    balance = await Tezos.tz.getBalance('account_address');
-    setBalance(balance);
+    const res = await getUserBalanceByRpc(wallet.address);
+    setBalance(res.balance);
   }
   const handleConnectWallet = async () => {
     console.log("gere")

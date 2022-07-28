@@ -68,7 +68,7 @@ export const getUserBalanceByRpc = async (address) => {
       console.log(error);
       return {
         success: false,
-        balance : new BigNumber(0),
+        balance : 0,
         error : error
       };
       
