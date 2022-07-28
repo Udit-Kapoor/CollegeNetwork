@@ -133,7 +133,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
   // wallet function
 
   const [wallet, setWallet] = useState(null);
+  const [balance, setBalance] = useState(null);
 
+  const fetchBal = async () => {
+    balance = await Tezos.tz.getBalance('account_address');
+    setBalance(balance);
+  }
   const handleConnectWallet = async () => {
     console.log("gere")
     const { wallet } = await ConnectWalletAPI();
@@ -143,18 +148,30 @@ function DashboardNavbar({ absolute, light, isMini }) {
     const { wallet } = await DisconnectWalletAPI();
     setWallet(wallet);
   };
-
   useEffect(() => {
     const func = async () => {
       const account = await FetchWalletAPI();
       if (account) {
         setWallet(account.address);
+        fetchBal();
       }
     };
     func();
   }, []);
 
+//  sadfas
 
+const getPackedKey = (tokenId, address, type) => {
+  const accountHex = `0x${TezosMessageUtils.writeAddress(address)}`;
+  let packedKey = null;
+  if (type === TokenVariant.FA2) {
+      packedKey = TezosMessageUtils.encodeBigMapKey(Buffer.from(TezosMessageUtils.writePackedData(`(Pair ${accountHex} ${tokenId})`, '', TezosParameterFormat.Michelson), 'hex'));
+  }
+  else {
+      packedKey = TezosMessageUtils.encodeBigMapKey(Buffer.from(TezosMessageUtils.writePackedData(`${accountHex}`, '', TezosParameterFormat.Michelson), 'hex'));
+  }
+  return packedKey;
+};
 
   return (
     <AppBar
@@ -168,6 +185,16 @@ function DashboardNavbar({ absolute, light, isMini }) {
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
+            <MDBox mr={2}>
+            <MDButton
+              variant="contained" color="info"
+              className="bg-red-500 px-6 py-2 rounded-sm text-xs font-semibold text-white cursor-pointer"
+            >
+              
+              {balance}
+              
+            </MDButton>
+            </MDBox>
             <MDButton
               variant="contained" color="info"
               onClick={wallet ? handleDisconnectWallet : handleConnectWallet}
