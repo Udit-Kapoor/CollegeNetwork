@@ -19,7 +19,7 @@ import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
-import PropTypes from "prop-types";
+import PropTypes, { number } from "prop-types";
 
 // @material-ui core components
 import AppBar from "@mui/material/AppBar";
@@ -59,6 +59,8 @@ import {
   DisconnectWalletAPI,
 } from "api/operations/wallet";
 import MDButton from "components/MDButton";
+import { getUserBalanceByRpc } from "api/balance";
+import { getTezBalance } from "api/balance";
 
 
 function DashboardNavbar({ absolute, light, isMini }) {
@@ -132,12 +134,24 @@ function DashboardNavbar({ absolute, light, isMini }) {
   });
   // wallet function
 
+  const [balance, setBalance] = useState(null);
   const [wallet, setWallet] = useState(null);
+
+  const fetchBal = async (address) => {
+    console.log('inside bal');
+    console.log(wallet);
+    const res = await getUserBalanceByRpc(address);
+    const tez = await getTezBalance(address);
+    console.log(tez.balance);
+    setBalance(res.balance);
+    console.log(res.balance);
+  };
 
   const handleConnectWallet = async () => {
     console.log("gere")
     const { wallet } = await ConnectWalletAPI();
     setWallet(wallet);
+    fetchBal(wallet);
   };
   const handleDisconnectWallet = async () => {
     const { wallet } = await DisconnectWalletAPI();
@@ -149,6 +163,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
       const account = await FetchWalletAPI();
       if (account) {
         setWallet(account.address);
+
       }
     };
     func();
