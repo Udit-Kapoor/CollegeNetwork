@@ -1,4 +1,6 @@
-import { tezos , CheckIfWalletConnected } from "./operations/wallet";
+import { tezos , wallet, CheckIfWalletConnected } from "./operations/wallet";
+import axios from 'axios';
+import { TezosMessageUtils, TezosParameterFormat } from 'conseiljs';
 
 const getPackedKey = (tokenId, address, type) => {
     const accountHex = `0x${TezosMessageUtils.writeAddress(address)}`;
@@ -29,14 +31,17 @@ const getPackedKey = (tokenId, address, type) => {
 
 export const getUserBalanceByRpc = async (address) => {
     try {
+      console.log(address);
+
       const mapId = 156082;
       const rpcNode = 'https://ghostnet.smartpy.io/'
       const packedKey = getPackedKey(0, address, 'FA1.2');
       const url = `${rpcNode}chains/main/blocks/head/context/big_maps/${mapId}/${packedKey}`;
       const response = await axios.get(url);
   
-      let balance = response.data.int;
-      balance = balance/6;
+      let balance = response.data.args[1].int;
+      balance = balance/Math.pow(10,6);
+
       return {
         success: true,
         balance,
@@ -54,12 +59,15 @@ export const getUserBalanceByRpc = async (address) => {
   export const getTezBalance =async (address)=> {
       
     try {
-        const WALLET_RESP = await CheckIfWalletConnected();
+
+        const WALLET_RESP = await CheckIfWalletConnected(wallet);
+
         if (!WALLET_RESP.success) {
           throw new Error('Wallet connection failed');
         }
         const _balance = await tezos.tz.getBalance(address);
-        const balance = _balance/6;
+        const balance = _balance/(10 ** 6);
+
         return {
           success: true,
           balance,
