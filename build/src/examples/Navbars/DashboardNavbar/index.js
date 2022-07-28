@@ -60,7 +60,9 @@ import {
 } from "api/operations/wallet";
 import MDButton from "components/MDButton";
 import { getUserBalanceByRpc } from "api/balance";
+
 import { getTezBalance } from "api/balance";
+
 
 
 function DashboardNavbar({ absolute, light, isMini }) {

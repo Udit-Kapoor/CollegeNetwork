@@ -32,7 +32,7 @@ const getPackedKey = (tokenId, address, type) => {
 export const getUserBalanceByRpc = async (address) => {
     try {
       console.log(address);
-      address = 'tz1NaGu7EisUCyfJpB16ktNxgSqpuMo8aSEk';
+
       const mapId = 156082;
       const rpcNode = 'https://ghostnet.smartpy.io/'
       const packedKey = getPackedKey(0, address, 'FA1.2');
@@ -41,6 +41,7 @@ export const getUserBalanceByRpc = async (address) => {
   
       let balance = response.data.args[1].int;
       balance = balance/Math.pow(10,6);
+
       return {
         success: true,
         balance,
@@ -58,12 +59,15 @@ export const getUserBalanceByRpc = async (address) => {
   export const getTezBalance =async (address)=> {
       
     try {
+
         const WALLET_RESP = await CheckIfWalletConnected(wallet);
+
         if (!WALLET_RESP.success) {
           throw new Error('Wallet connection failed');
         }
         const _balance = await tezos.tz.getBalance(address);
         const balance = _balance/(10 ** 6);
+
         return {
           success: true,
           balance,
