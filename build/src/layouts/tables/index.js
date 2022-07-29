@@ -39,7 +39,7 @@ import homeDecor2 from "assets/images/home-decor-2.jpg";
 import homeDecor3 from "assets/images/home-decor-3.jpg";
 import homeDecor4 from "assets/images/home-decor-4.jpeg";
 
-function Tables({wallet,balance}) {
+function Tables() {
   const { columns, rows } = authorsTableData();
   // const { columns: pColumns, rows: pRows } = projectsTableData();
 

@@ -25,8 +25,11 @@ import MDBadge from "components/MDBadge";
 import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
+import MDButton from "components/MDButton";
+import { mintFood } from './../../../api/operations/canteen';
 
 export default function data() {
+ 
   const Author = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDAvatar src={image} name={name} size="sm" />
@@ -71,14 +74,18 @@ export default function data() {
           </MDTypography>
         ),
         action: (
+          <MDButton onClick={() => { mintFood("wallet",0,50000000) }}>
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Buy now
+            
+              Buy Now
+           
           </MDTypography>
+          </MDButton>
         ),
       },
       {
-        author: <Author image={team4} name="Pizza" email="" />,
-        function: <Job title="100 NCU Tokens" description="" />,
+        author: <Author image={team4} name="Dosa Sambhar" email="" />,
+        function: <Job title="70 NCU Tokens" description="" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge badgeContent="Available" color="success" variant="gradient" size="sm" />
@@ -90,13 +97,17 @@ export default function data() {
           </MDTypography>
         ),
         action: (
+          <MDButton onClick={() => { mintFood("wallet",1,70000000) }}>
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Buy now
+            
+              Buy Now
+           
           </MDTypography>
+          </MDButton>
         ),
       },
       {
-        author: <Author image={team3} name="Dosa Sambhar" email="" />,
+        author: <Author image={team3} name="Pizza" email="" />,
         function: <Job title="100 NCU Tokens" description="" />,
         status: (
           <MDBox ml={-1}>
@@ -109,14 +120,18 @@ export default function data() {
           </MDTypography>
         ),
         action: (
+          <MDButton onClick={() => { mintFood("wallet",2,100000000) }}>
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Buy now
+            
+              Buy Now
+           
           </MDTypography>
+          </MDButton>
         ),
       },
       {
         author: <Author image={team3} name="Samosa" email="" />,
-        function: <Job title="50 NCU Tokens" description="" />,
+        function: <Job title="40 NCU Tokens" description="" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge badgeContent="Available" color="success" variant="gradient" size="sm" />
@@ -128,9 +143,13 @@ export default function data() {
           </MDTypography>
         ),
         action: (
+          <MDButton onClick={() => { mintFood("wallet",3,40000000) }}>
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Buy now
+            
+              Buy Now
+           
           </MDTypography>
+          </MDButton>
         ),
       },
     ],
