@@ -27,14 +27,18 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
+import NCUicon from "assets/images/icons/icon.png"
+
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
+import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
 import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
+
 
 // Custom styles for DashboardNavbar
 import {
@@ -140,14 +144,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const [wallet, setWallet] = useState(null);
 
   const fetchBal = async (address) => {
-    console.log('inside bal');
-    console.log(wallet);
     const res = await getUserBalanceByRpc(address);
     const tez = await getTezBalance(address);
-    console.log(tez.balance);
     setBalance(res.balance);
-    console.log(res.balance);
-  };
+    
+  };  
 
   const handleConnectWallet = async () => {
     console.log("gere")
@@ -158,6 +159,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleDisconnectWallet = async () => {
     const { wallet } = await DisconnectWalletAPI();
     setWallet(wallet);
+    setBalance(null);
   };
 
   useEffect(() => {
@@ -185,6 +187,22 @@ function DashboardNavbar({ absolute, light, isMini }) {
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
+           
+            {
+              balance ? 
+              <MDBox display="flex" alignItems="center" mr={3}>
+                {<MDBox component="img" src={NCUicon} alt="Brand" width="2rem" mr={1} />}
+                <MDBox
+                  width={"100%"}
+                  
+                >
+                  <MDTypography component="h6" variant="button" fontWeight="medium" >
+                    {balance}
+                  </MDTypography>
+                </MDBox>
+              </MDBox>
+            : <></>
+            }
             <MDButton
               variant="contained" color="info"
               onClick={wallet ? handleDisconnectWallet : handleConnectWallet}
