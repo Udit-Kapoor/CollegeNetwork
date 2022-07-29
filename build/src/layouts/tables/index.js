@@ -38,11 +38,15 @@ import homeDecor1 from "assets/images/home-decor-1.jpg";
 import homeDecor2 from "assets/images/home-decor-2.jpg";
 import homeDecor3 from "assets/images/home-decor-3.jpg";
 import homeDecor4 from "assets/images/home-decor-4.jpeg";
+import { getFoodBal } from './../../api/fetchUserFood';
+import { useContext } from 'react';
+import { manageFunc } from 'App';
 
 function Tables() {
+  const{ wallet ,balance} = useContext(manageFunc);
   const { columns, rows } = authorsTableData();
   // const { columns: pColumns, rows: pRows } = projectsTableData();
-
+  const value = getFoodBal(wallet);
   return (
     <DashboardLayout>
       <MDBox pt={6} pb={3}>
@@ -92,6 +96,31 @@ function Tables() {
               </MDBox>
               <MDBox pt={2} mx={2} py={3}
                 px={2}>
+                  {
+                    value[1]!=0 ?
+                    <>burger hai</> :<>kuch nhi hai</>
+                  }
+                  {/* {
+                    wallet?value[1]!=='0' ?
+                    <>
+                     idli hai
+                    </>
+                    :<></> : <>idli nhi hai</>
+                  }
+                  {
+                    wallet ?value[2]!=='0' ?
+                    <>
+                     pizza hai
+                    </>
+                    :<></> : <>pizza nhi hai</>
+                  }
+                  {
+                    wallet?value[3]!=='0' ?
+                    <>
+                     samosa hai
+                    </>
+                    :<></> : <>smosa nhi hai</>
+                  } */}
                 <Grid container spacing={6}>
                   <Grid item xs={12} md={6} xl={3}>
                     <DefaultProjectCard

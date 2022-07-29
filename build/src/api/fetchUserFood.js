@@ -11,7 +11,7 @@ export const getFoodBal = async (address) =>  {
             axios.get(`https://api.ghostnet.tzkt.io/v1/bigmaps/156137/keys/{ "nat": "3", "address": "${address}" }`)
         ]);
 
-        value = {};
+        let value = {};
 
         for(var i = 0 ; i< response.length ; i++){
             if(response[i].status === 200){
