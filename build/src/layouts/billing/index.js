@@ -32,10 +32,9 @@ import Footer from "examples/Footer";
 import BillingInformation from "layouts/billing/components/BillingInformation";
 import Transactions from "layouts/billing/components/Transactions";
 
-function Billing() {
+function Billing({wallet,balance}) {
   return (
     <DashboardLayout>
-      <DashboardNavbar />
       <MDBox mt={8}>
         <MDBox mb={3}>
           <Grid container spacing={3}>

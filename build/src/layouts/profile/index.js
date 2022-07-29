@@ -53,13 +53,15 @@ import team1 from "assets/images/team-1.jpg";
 import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
+import { useContext } from 'react';
+import { manageFunc } from 'App';
 
-function Overview() {
+function Overview({}) {
+  const{ wallet ,balance} = useContext(manageFunc);
   return (
     <DashboardLayout>
-      <DashboardNavbar />
       <MDBox mb={2} />
-      <Header>
+      <Header wallet={wallet}>
         
         <MDBox pt={2} px={2} lineHeight={1.25}>
         <MDBox my={3}>

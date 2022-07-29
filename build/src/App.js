@@ -52,9 +52,14 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import { createContext } from 'react';
 window.Buffer = window.Buffer || require("buffer").Buffer; 
 
-export default function App() {
+const manageFunc = createContext(null);
+
+
+function App() {
   const [controller, dispatch] = useMaterialUIController();
   const {
     miniSidenav,
@@ -146,6 +151,9 @@ export default function App() {
     </MDBox>
   );
 
+  const [balance, setBalance] = useState(null);
+  const [wallet, setWallet] = useState(null);
+
   return (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
@@ -163,11 +171,16 @@ export default function App() {
           {configsButton}
         </>
       )}
+      <manageFunc.Provider value={{balance, wallet, setBalance, setWallet}}>
+      <DashboardNavbar/>
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/connect" />} />
       </Routes>
+      </manageFunc.Provider>
     </ThemeProvider>
   );
 }
+
+export {App,manageFunc};

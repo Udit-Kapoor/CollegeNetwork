@@ -36,12 +36,11 @@ import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 import AddStudentCard from "./components/AddStudentCard";
 
-function Dashboard() {
+function Dashboard({wallet,balance}) {
   const { sales, tasks } = reportsLineChartData;
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
       <MDBox py={3}>
         <MDBox mt={4.5}>
           <Grid container spacing={3}>

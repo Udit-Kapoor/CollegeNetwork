@@ -66,10 +66,13 @@ import MDButton from "components/MDButton";
 import { getUserBalanceByRpc } from "api/balance";
 
 import { getTezBalance } from "api/balance";
+import { useContext } from 'react';
+import { manageFunc } from "App";
 
+// setWallet ,setBalance , balance , wallet
 
-
-function DashboardNavbar({ absolute, light, isMini }) {
+function DashboardNavbar({ absolute, light, isMini}) {
+  const {setWallet ,setBalance , balance , wallet} = useContext(manageFunc);
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
@@ -140,25 +143,27 @@ function DashboardNavbar({ absolute, light, isMini }) {
   });
   // wallet function
 
-  const [balance, setBalance] = useState(null);
-  const [wallet, setWallet] = useState(null);
-
+  // const [balance, setBalance] = useState(null);
+  // const [wallet, setWallet] = useState(null);
+  let res = null;
+  const nwallet = null;
   const fetchBal = async (address) => {
-    const res = await getUserBalanceByRpc(address);
-    const tez = await getTezBalance(address);
+    res = await getUserBalanceByRpc(address);
+    console.log(wallet,res)
+    // const tez = await getTezBalance(address);
     setBalance(res.balance);
-    
   };  
 
+
   const handleConnectWallet = async () => {
-    console.log("gere")
-    const { wallet } = await ConnectWalletAPI();
-    setWallet(wallet);
-    fetchBal(wallet);
+    // console.log(wallet)
+    const wal  = await ConnectWalletAPI();
+    setWallet(wal.wallet)
+    fetchBal(wal.wallet);
   };
   const handleDisconnectWallet = async () => {
-    const { wallet } = await DisconnectWalletAPI();
-    setWallet(wallet);
+    const { nwallet } = await DisconnectWalletAPI();
+    setWallet(nwallet);
     setBalance(null);
   };
 
@@ -167,7 +172,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
       const account = await FetchWalletAPI();
       if (account) {
         setWallet(account.address);
-
       }
     };
     func();

@@ -38,7 +38,7 @@ import breakpoints from "assets/theme/base/breakpoints";
 import burceMars from "assets/images/bruce-mars.jpg";
 import backgroundImage from "assets/images/bg-profile.jpeg";
 
-function Header({ children }) {
+function Header({ children ,wallet}) {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
 
@@ -99,7 +99,7 @@ function Header({ children }) {
           <Grid item>
             <MDBox height="100%" mt={0.5} lineHeight={1}>
               <MDTypography variant="h5" fontWeight="medium">
-                tz1LvMXNaVcq1Zjz7zxjF8NJPTu1oQ6vf2Qf
+                {wallet}
               </MDTypography>
               <MDTypography variant="button" color="text" fontWeight="regular">
                 Your address
