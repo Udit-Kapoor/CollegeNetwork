@@ -41,12 +41,25 @@ import homeDecor4 from "assets/images/home-decor-4.jpeg";
 import { getFoodBal } from './../../api/fetchUserFood';
 import { useContext } from 'react';
 import { manageFunc } from 'App';
+import { useState , useEffect } from 'react';
 
 function Tables() {
   const{ wallet ,balance} = useContext(manageFunc);
   const { columns, rows } = authorsTableData();
-  // const { columns: pColumns, rows: pRows } = projectsTableData();
-  const value = getFoodBal(wallet);
+  
+  useEffect(() => {
+    getBal()
+ },[wallet])
+
+  const [result, setResult] = useState(null);
+
+  async function getBal() {
+    const res = await getFoodBal(wallet);
+    setResult(res.value)
+  }
+
+
+  
   return (
     <DashboardLayout>
       <MDBox pt={6} pb={3}>
@@ -96,60 +109,101 @@ function Tables() {
               </MDBox>
               <MDBox pt={2} mx={2} py={3}
                 px={2}>
-                  {
-                    value[1]!=0 ?
-                    <>burger hai</> :<>kuch nhi hai</>
-                  }
-                  {/* {
-                    wallet?value[1]!=='0' ?
-                    <>
-                     idli hai
-                    </>
-                    :<></> : <>idli nhi hai</>
-                  }
-                  {
-                    wallet ?value[2]!=='0' ?
-                    <>
-                     pizza hai
-                    </>
-                    :<></> : <>pizza nhi hai</>
-                  }
-                  {
-                    wallet?value[3]!=='0' ?
-                    <>
-                     samosa hai
-                    </>
-                    :<></> : <>smosa nhi hai</>
-                  } */}
+                  
                 <Grid container spacing={6}>
-                  <Grid item xs={12} md={6} xl={3}>
-                    <DefaultProjectCard
-                      image={homeDecor1}
-                      label="Canteen Item"
-                      title="Burger"
-                      description="Burn this to get a Burger invoice. (Valid for an hour)"
-                      action={{
-                        type: "internal",
-                        route: "/pages/profile/profile-overview",
-                        color: "info",
-                        label: "Burn Now",
-                      }}
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={6} xl={3}>
-                    <DefaultProjectCard
-                      image={homeDecor4}
-                      label="Canteen Item"
-                      title="Pizza"
-                      description="Burn this to get a Pizza invoice. (Valid for an hour)"
-                      action={{
-                        type: "internal",
-                        route: "/pages/profile/profile-overview",
-                        color: "info",
-                        label: "Burn Now",
-                      }}
-                    />
-                  </Grid>
+                  {console.log(result)}
+                  { result!=null ?
+                    result[0]!=0 ?
+                    <>
+                    <Grid item xs={12} md={6} xl={3}>
+                      <DefaultProjectCard
+                        image={homeDecor1}
+                        label={result[0]}
+                        title="Burger"
+                        description="Burn this to get a Burger invoice. (Valid for an hour)"
+                        action={{
+                          type: "internal",
+                          route: "/pages/profile/profile-overview",
+                          color: "info",
+                          label: "Burn Now",
+                        }}
+                      />
+                    </Grid>
+                    </>
+                    : <></>
+                    : <></>
+                  }
+                  { result!=null ?
+                    result[1]!=0 ?
+                    <>
+                    <Grid item xs={12} md={6} xl={3}>
+                      <DefaultProjectCard
+                        image={homeDecor1}
+                        label={result[1]}
+                        title="Idli"
+                        description="Burn this to get a Burger invoice. (Valid for an hour)"
+                        action={{
+                          type: "internal",
+                          route: "/pages/profile/profile-overview",
+                          color: "info",
+                          label: "Burn Now",
+                        }}
+                      />
+                    </Grid>
+                    </>
+                    : <></>
+                    : <></>
+                  }
+                  { result!=null ?
+                    result[2]!=0 ?
+                    <>
+                    <Grid item xs={12} md={6} xl={3}>
+                      <DefaultProjectCard
+                        image={homeDecor1}
+                        label={result[2]}
+                        title="Pizza"
+                        description="Burn this to get a Burger invoice. (Valid for an hour)"
+                        action={{
+                          type: "internal",
+                          route: "/pages/profile/profile-overview",
+                          color: "info",
+                          label: "Burn Now",
+                        }}
+                      />
+                    </Grid>
+                    </>
+                    : <></>
+                    : <></>
+                  }
+                  { result!=null ?
+                    result[3]!=0 ?
+                    <>
+                    <Grid item xs={12} md={6} xl={3}>
+                      <DefaultProjectCard
+                        image={homeDecor1}
+                        label={result[3]}
+                        title="Samosa"
+                        description="Burn this to get a Burger invoice. (Valid for an hour)"
+                        action={{
+                          type: "internal",
+                          route: "/pages/profile/profile-overview",
+                          color: "info",
+                          label: "Burn Now",
+                        }}
+                      />
+                    </Grid>
+                    </>
+                    : <></>
+                    : <></>
+                  }
+                  
+                    {/* <MDTypography>
+                    
+                      no of burgers : {result[0]}<br/>
+                      no of idli : {result[1]}<br/>
+                      no of pizza : {result[2]}<br/>
+                      no of samosa : {result[3]}<br/>
+                    </MDTypography> */}
                   {/* <Grid item xs={12} md={6} xl={3}>
                     <DefaultProjectCard
                       image={homeDecor1}

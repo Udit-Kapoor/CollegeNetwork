@@ -76,9 +76,7 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
         />
       </MDBox>
       <MDBox mt={1} mx={0.5}>
-        <MDTypography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
-          {label}
-        </MDTypography>
+
         <MDBox mb={1}>
           {action.type === "internal" ? (
             <MDTypography
@@ -87,7 +85,10 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
               variant="h5"
               textTransform="capitalize"
             >
-              {title}
+              {title} 
+              <MDTypography variant="caption" ml={1}>
+              x {label}
+              </MDTypography>
             </MDTypography>
           ) : (
             <MDTypography

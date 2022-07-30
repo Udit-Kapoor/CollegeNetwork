@@ -22,7 +22,6 @@ export const getFoodBal = async (address) =>  {
             }
         }
 
-        console.log(value);
         return{
             sucess : true,
             value : value
