@@ -111,7 +111,6 @@ function Tables() {
                 px={2}>
                   
                 <Grid container spacing={6}>
-                  {console.log(result)}
                   { result!=null ?
                     result[0]!=0 ?
                     <>

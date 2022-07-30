@@ -55,9 +55,23 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import { useContext } from 'react';
 import { manageFunc } from 'App';
+import { getAchievements } from "api/fetchUserFood";
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 function Overview({}) {
   const{ wallet ,balance} = useContext(manageFunc);
+  useEffect(() => {
+      getBal()
+  },[wallet])
+
+    const [result, setResult] = useState(null);
+
+    async function getBal() {
+      const res = await getAchievements(wallet);
+      setResult(res)
+    }
+
   return (
     <DashboardLayout>
       <MDBox mb={2} />
@@ -131,62 +145,6 @@ function Overview({}) {
         </MDBox>
         <MDBox p={2}>
           <Grid container spacing={6}>
-            <Grid item xs={12} md={6} xl={3}>
-              <DefaultProjectCard
-                image={homeDecor1}
-                label="project #2"
-                title="modern"
-                description="As Uber works through a huge amount of internal management."
-                action={{
-                  type: "internal",
-                  route: "/pages/profile/profile-overview",
-                  color: "info",
-                  label: "view on blockchain",
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} md={6} xl={3}>
-              <DefaultProjectCard
-                image={homeDecor1}
-                label="project #2"
-                title="modern"
-                description="As Uber works through a huge amount of internal management."
-                action={{
-                  type: "internal",
-                  route: "/pages/profile/profile-overview",
-                  color: "info",
-                  label: "view on blockchain",
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} md={6} xl={3}>
-              <DefaultProjectCard
-                image={homeDecor2}
-                label="project #1"
-                title="scandinavian"
-                description="Music is something that everyone has their own specific opinion about."
-                action={{
-                  type: "internal",
-                  route: "/pages/profile/profile-overview",
-                  color: "info",
-                  label: "view on blockchain",
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} md={6} xl={3}>
-              <DefaultProjectCard
-                image={homeDecor3}
-                label="project #3"
-                title="minimalist"
-                description="Different people have different taste, and various types of music."
-                action={{
-                  type: "internal",
-                  route: "/pages/profile/profile-overview",
-                  color: "info",
-                  label: "view on blockchain",
-                }}
-              />
-            </Grid>
             <Grid item xs={12} md={6} xl={3}>
               <DefaultProjectCard
                 image={homeDecor4}
